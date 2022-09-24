@@ -59,7 +59,17 @@ class TipoProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoProdutos = DB::select("SELECT TIPO_PRODUTOS.id,
+        TIPO_PRODUTOS.descricao,
+        TIPO_PRODUTOS.updated_at,
+        TIPO_PRODUTOS.created_at
+        FROM TIPO_PRODUTOS
+        WHERE TIPO_PRODUTOS.id = ?", [$id]);
+
+        if(count($tipoProdutos) > 0)
+        return view("tipoproduto/show")->with("tipoProduto", $tipoProdutos[0]);
+
+        echo "Tipo Produto não encontrado";
     }
 
     /**
@@ -70,7 +80,12 @@ class TipoProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipoProduto = TipoProduto::find($id);
+        if(isset($tipoProduto)){
+            return view ("tipoproduto/edit")->with("tipoProduto", $tipoProduto);
+        } else {
+            echo "Tipo Produto não encontrado";
+        }
     }
 
     /**
@@ -82,7 +97,17 @@ class TipoProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipoProduto = TipoProduto::find($id); 
+      
+        if(isset($tipoProduto)){
+       
+            $tipoProduto->descricao = $request->descricao;
+            $tipoProduto->update();
+          
+            return redirect('/tipoproduto');
+        } else {
+            echo "TipoProduto não encontrado";
+        }
     }
 
     /**
