@@ -23,4 +23,11 @@ Route::get('produto/{id}/edit', "App\Http\Controllers\ProdutoController@edit")->
 Route::put('produto/{id}', "App\Http\Controllers\ProdutoController@update")->name("produto.update");
 Route::delete('produto/{id}', "App\Http\Controllers\ProdutoController@destroy")->name("produto.destroy");
 
-//teste de commit
+use App\Models\Produto;
+
+Route::get('teste', function () {
+    // $produto = DB::select('SELECT * FROM PRODUTOS WHERE id=1')[0];
+    // $produto = Produto::where('preco', 50.50)->first();
+    // $produto = Produto::find(1);
+    dd($produto);
+});

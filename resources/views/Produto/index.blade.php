@@ -41,5 +41,39 @@
             </tbody>
           </table>
     </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="destroyModalLabel">Confirmação de remoção</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Deseja realmente remover este recurso?
+                </div>
+                <div class="modal-footer">
+                <form id="id-form-modal-remover" action="/produto/8" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger" value="Confirmar Remoção">
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    <script>
+      const arrayBtnRemover = document.querySelectorAll(".class-button-destroy");
+      const formModalBotaoRemover = document.querySelector("#id-form-modal-remover");
+      arrayBtnRemover.forEach(btnRemover => {
+          btnRemover.addEventListener("click",configurarBotaoRemoverModal);
+      });
+      function configurarBotaoRemoverModal(){
+          //console.log(this.getAttribute("value"));
+          formModalBotaoRemover.setAtttibute("action", this.getAttribute("value"));
+      }
+    </script>
+
 </body>
 </html>
