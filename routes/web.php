@@ -23,3 +23,4 @@ Route::get('produto/{id}/edit', "App\Http\Controllers\ProdutoController@edit")->
 Route::put('produto/{id}', "App\Http\Controllers\ProdutoController@update")->name("produto.update");
 Route::delete('produto/{id}', "App\Http\Controllers\ProdutoController@destroy")->name("produto.destroy");
 
+//teste de commit
